@@ -1,0 +1,15 @@
+package:
+  name: wide_alu
+  authors:
+    - "Renato Belmonte <renato.belmonte@studenti.polito.it"
+dependencies:
+  #  common_cells:           { git: "https://github.com/pulp-platform/common_cells.git", version: 1.21.0 }
+    
+sources: 
+  #wide_alu
+  defines:
+  files:
+    - rtl/wide_pkg.sv
+    - rtl/wide_alu.sv
+  include_dirs:
+    - include
