@@ -4,12 +4,18 @@ package:
     - "Renato Belmonte <renato.belmonte@studenti.polito.it"
 dependencies:
   #  common_cells:           { git: "https://github.com/pulp-platform/common_cells.git", version: 1.21.0 }
-    
+  axi:                    { git: "https://github.com/pulp-platform/axi.git", version: 0.39.2 }
+ 
 sources: 
   #wide_alu
   defines:
   files:
-    - rtl/wide_pkg.sv
+    - gen_sv/wide_alu_reg_pkg.sv
+    - gen_sv/wide_alu_reg_top.sv
+    - rtl/wide_alu_pkg.sv
     - rtl/wide_alu.sv
+    - rtl/wide_alu_top.sv
   include_dirs:
-    - include
+    - ../register_interface/include 
+  vlog_opts:
+    - -L register_interface_lib
