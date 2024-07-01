@@ -5,7 +5,7 @@ package:
 dependencies:
   #  common_cells:           { git: "https://github.com/pulp-platform/common_cells.git", version: 1.21.0 }
   axi:                    { git: "https://github.com/pulp-platform/axi.git", version: 0.39.2 }
- 
+  register_interface:     { git: "https://github.com/pulp-platform/register_interface.git", version: 0.4.1 }
 sources: 
   #wide_alu
   defines:
