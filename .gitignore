@@ -45,6 +45,7 @@ work/
 *.pdb
 *.log
 *.pb
+*.patch
 
 # Kernel Module Compile Results
 *.mod*
