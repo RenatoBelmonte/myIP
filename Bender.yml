@@ -16,7 +16,7 @@ sources:
     - rtl/wide_alu.sv
     - rtl/wide_alu_top.sv
   include_dirs:
-    - ../register_interface/include 
-    - ../register_interface/vendor/lowrisc_opentitan/src
+    - ../register_interface*/include 
+    - ../register_interface*/vendor/lowrisc_opentitan/src
   vlog_opts:
     - -L register_interface_lib
