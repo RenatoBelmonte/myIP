@@ -43,6 +43,8 @@ work/
 *.su
 *.idb
 *.pdb
+*.log
+*.pb
 
 # Kernel Module Compile Results
 *.mod*
