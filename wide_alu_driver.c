@@ -2,6 +2,13 @@
 #include <stdint.h>
 #include <stdio.h>
 
+void set_op(uint8_t operation)
+{
+    uint32_t volatile *ctrl2_reg = (uint32_t *)WIDE_ALU_CTRL2(0);
+    uint32_t ctrl2_old_value = *ctrl2_reg;
+    *ctrl2_reg = ctrl2_old_value | (operation & WIDE_ALU_CTRL2_OPSEL_MASK) << WIDE_ALU_CTRL2_OPSEL_LSB;
+}
+
 void set_delay(uint8_t delay)
 {
   uint32_t volatile * ctrl2_reg = (uint32_t*)WIDE_ALU_CTRL2(0);
@@ -25,6 +32,13 @@ void set_operands(uint32_t* a, uint32_t* b)
   }
 }
 
+void trigger_op(void) {
+    uint32_t volatile *ctrl1_reg = (uint32_t *)WIDE_ALU_CTRL1(0);
+    asm volatile ("": : : "memory");
+    *ctrl1_reg = (1 & WIDE_ALU_CTRL1_TRIGGER_MASK) << WIDE_ALU_CTRL1_TRIGGER_LSB;
+    asm volatile ("": : : "memory");
+}
+
 int poll_done(void)
 {
   uint32_t volatile * status_reg = (uint32_t*)WIDE_ALU_STATUS(0);
@@ -41,7 +55,7 @@ int poll_done(void)
 void get_result(uint32_t* result)
 {
   uint32_t volatile * result_reg_start = (uint32_t*)WIDE_ALU_RESULT_0(0);
-  for (int i = 0; i<512/8; i++)
+  for (int i = 0; i<512/32; i++)
   {
     result[i] = result_reg_start[i];
   }
@@ -53,3 +67,28 @@ void clear_error(void)
   //Trigger operation by writing to trigger bit
   *ctrl1_reg = (1 & WIDE_ALU_CTRL1_CLEAR_ERR_MASK)<<WIDE_ALU_CTRL1_CLEAR_ERR_LSB;
 }
+
+int wide_multiply(uint32_t a[8], uint32_t b[8], uint32_t result[16]) {
+    int status = poll_done();
+    if (status != 0) {
+	printf("error: setting up multiplication\n");
+	return status;
+    }
+    set_operands(a, b);
+    set_op(WIDE_ALU_CTRL2_OPSEL_MUL);
+
+    trigger_op();
+
+    status = poll_done();
+
+    if (status != 0) {
+	printf("operation failed\n");
+	return status;
+    }
+    else
+    {
+	get_result(result);
+	return 0;
+    }
+}
+
