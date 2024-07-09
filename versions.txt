@@ -1,0 +1,5 @@
+PULPissimo:
+commit bfc3d9a1ef72443464509a22d948f0a6f5b65b4c
+
+PULP-runtime
+commit a39271c9a3bf66529cd894327f20b71fafaeb820

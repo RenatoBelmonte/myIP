@@ -1,4 +1,4 @@
-#include <wide_alu_auto.h>
+#include <wide_alu.h>
 #include <stdint.h>
 #include <hal/pulp.h>
 

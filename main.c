@@ -16,10 +16,18 @@
 
 #include <stdio.h>
 #include "pulp.h"
+//#include <rt/rt_api.h>
+//#include <rt/rt_gpio.h>
+
+#define GPIO 8
+
+int __rt_fpga_fc_frequency = 20000000;
+int __rt_fpga_periph_frequency = 10000000;
 
 int main()
 {
     printf("Hello World!\n");
+
 
     uint32_t a[32];
     uint32_t b[32];
@@ -34,8 +42,29 @@ int main()
     set_delay(50);
 
     wide_multiply(a, b, result);
-
-    printf("Result [0]: %d\n", result[0]);
+    
+    while(1)
+    {
+      printf("Result [0]: %d\n", result[0]);
+    }
+    
+//    // GPIO initialization
+//    rt_gpio_init(0, GPIO);
+//
+//    // Configure GPIO as an outpout
+//    rt_gpio_set_dir(0, 1<<GPIO, RT_GPIO_IS_OUT);
+//
+//    // Now set several values
+//    rt_gpio_set_pin_value(0, GPIO, 1);
+//
+//    rt_time_wait_us(2000);
+//
+//    rt_gpio_set_pin_value(0, GPIO, 0);
+//
+//    rt_time_wait_us(2000);
+//
+//    rt_gpio_set_pin_value(0, GPIO, 1);
+//
 
     return 0;
 }

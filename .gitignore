@@ -1,7 +1,15 @@
 # Working directory
 work/
+build/
+build/main
+
 # Prerequisites
 *.d
+
+# Vivado files
+.Xil/
+*.jou
+*.str
 
 # Object files
 *.o
