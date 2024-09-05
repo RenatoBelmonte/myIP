@@ -67,14 +67,26 @@ module wide_alu_top
                  .reg2hw(reg_file_to_ip),
                  .hw2reg(ip_to_reg_file)
     );
+    
+    // New signals to connect the outputs of spiker_reader
+    logic [31:0] spiker_data_out1;
+    logic [31:0] spiker_data_out2;
 
+    // Instantiate the VHDL module
+    spiker_reader u_spiker_reader (
+        .data_in1(reg_file_to_ip.op_a),
+        .data_in2(reg_file_to_ip.op_b),
+        .data_out1(spiker_data_out1),
+        .data_out2(spiker_data_out2)
+    );
+    
     wide_alu i_wide_alu (
                          .clk_i,
                          .rst_ni,
                          .trigger_i(reg_file_to_ip.ctrl1.trigger.q & reg_file_to_ip.ctrl1.trigger.qe),
                          .clear_err_i(reg_file_to_ip.ctrl1.clear_err.q & reg_file_to_ip.ctrl1.clear_err.qe),
-                         .op_a_i(reg_file_to_ip.op_a),
-                         .op_b_i(reg_file_to_ip.op_b),
+                         .op_a_i(spiker_data_out1),
+                         .op_b_i(spiker_data_out2),
                          .deaccel_factor_we_i(reg_file_to_ip.ctrl2.delay.qe),
                          .deaccel_factor_i(reg_file_to_ip.ctrl2.delay.q),
                          .deaccel_factor_o(ip_to_reg_file.ctrl2.delay.d),
