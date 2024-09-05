@@ -1,7 +1,7 @@
 # Working directory
 work/
 build/
-build/main
+build/main/*
 
 # Prerequisites
 *.d
