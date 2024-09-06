@@ -2,6 +2,7 @@
 work/
 build/
 build/main/*
+.vscode/
 
 # Prerequisites
 *.d

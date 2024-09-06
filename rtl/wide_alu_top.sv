@@ -67,7 +67,13 @@ module wide_alu_top
                  .reg2hw(reg_file_to_ip),
                  .hw2reg(ip_to_reg_file)
     );
-    
+
+  //////////////////////////////////////////////////////////////////////////
+  //                                                                      //
+  //                Instantiate the SPIKER READER module                  //
+  //                                                                      //
+  //////////////////////////////////////////////////////////////////////////
+
     // New signals to hold the values of reg_file_to_ip.op_a and reg_file_to_ip.op_b
     logic [31:0] op_a_signal;
     logic [31:0] op_b_signal;
