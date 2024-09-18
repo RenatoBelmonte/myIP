@@ -3,6 +3,7 @@
 #ifndef _WIDE_ALU_REG_DEFS_
 #define _WIDE_ALU_REG_DEFS_
 
+// WIDE_ALU ## id ## _BASE_ADDR defined in pulp-runtime/include/archi/chips/pulpissimo/memory_map.h
 // Subword of Operand A.
 #define WIDE_ALU_OP_A_0(id)                 (WIDE_ALU ## id ## _BASE_ADDR  + 0x0)
 #define WIDE_ALU_OP_A_0_OFFSET              0x0
