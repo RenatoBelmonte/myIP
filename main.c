@@ -43,10 +43,7 @@ int main()
 
     wide_multiply(a, b, result);
     
-    while(1)
-    {
-      printf("Result [0]: %d\n", result[0]);
-    }
+    printf("Result [0]: %d\n", result[0]);
     
 //    // GPIO initialization
 //    rt_gpio_init(0, GPIO);
