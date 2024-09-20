@@ -49,6 +49,7 @@
           swaccess: "wo",
           hwaccess: "hro",
           hwext: "true",
+          hwqe: "true",
           fields: [
               { bits: "0", name: "TRIGGER",
                 desc: "Trigger operation on rising edge."
@@ -63,6 +64,7 @@
           swaccess: "rw",
           hwaccess: "hrw",
           hwext: "true",
+          hwqe: "true",
           fields: [
               { bits: "2:0", name: "OPSEL",
                 desc: "Select the operation to perform.",
